@@ -28,3 +28,72 @@ extension ColorExt on Color {
     );
   }
 }
+
+extension AlignmentExt on AlignmentGeometry {
+  String toJson() {
+    return json.encode(this.toMap());
+  }
+
+  Map toMap() {
+    if (this is Alignment)
+      return {
+        'x': (this as Alignment).x,
+        'y': (this as Alignment).y,
+      };
+    return null;
+  }
+
+  Alignment fromJson(String jsonStr) {
+    var jsonMap = json.decode(jsonStr);
+    return Alignment(jsonMap['x'], jsonMap['y']);
+  }
+
+  Alignment fromMap(dynamic jsonMap) {
+    if (jsonMap == null) return null;
+    return Alignment(jsonMap['x'], jsonMap['y']);
+  }
+}
+
+extension TextBaselineExt on TextBaseline {
+  String toJson() {
+    return json.encode(this.toMap());
+  }
+
+  Map toMap() {
+    return {
+      'index': this.index,
+    };
+  }
+
+  TextBaseline fromJson(String jsonStr) {
+    var jsonMap = json.decode(jsonStr);
+    return TextBaseline.values[jsonMap['index']];
+  }
+
+  TextBaseline fromMap(dynamic jsonMap) {
+    if (jsonMap == null) return null;
+    return TextBaseline.values[jsonMap['index']];
+  }
+}
+
+extension TextDirectionExt on TextDirection {
+  String toJson() {
+    return json.encode(this.toMap());
+  }
+
+  Map toMap() {
+    return {
+      'index': this.index,
+    };
+  }
+
+  TextDirection fromJson(String jsonStr) {
+    var jsonMap = json.decode(jsonStr);
+    return TextDirection.values[jsonMap['index']];
+  }
+
+  TextDirection fromMap(dynamic jsonMap) {
+    if (jsonMap == null) return null;
+    return TextDirection.values[jsonMap['index']];
+  }
+}

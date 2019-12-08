@@ -392,28 +392,3 @@ extension EdgeInsetsExt on EdgeInsetsGeometry {
     );
   }
 }
-
-extension AlignmentExt on AlignmentGeometry {
-  String toJson() {
-    return json.encode(this.toMap());
-  }
-
-  Map toMap() {
-    if (this is Alignment)
-      return {
-        'x': (this as Alignment).x,
-        'y': (this as Alignment).y,
-      };
-    return null;
-  }
-
-  Alignment fromJson(String jsonStr) {
-    var jsonMap = json.decode(jsonStr);
-    return Alignment(jsonMap['x'], jsonMap['y']);
-  }
-
-  Alignment fromMap(dynamic jsonMap) {
-    if (jsonMap == null) return null;
-    return Alignment(jsonMap['x'], jsonMap['y']);
-  }
-}

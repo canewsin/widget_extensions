@@ -110,18 +110,6 @@ extension TextAlignExt on TextAlign {
   }
 }
 
-extension TextDirectionExt on TextDirection {
-  toMap() {
-    if (this is TextDirection) return {'index': this.index};
-    return null;
-  }
-
-  fromMap(dynamic jsonMap) {
-    if (jsonMap == null) return null;
-    return TextDirection.values[jsonMap['index']];
-  }
-}
-
 extension TextSpanExt on TextSpan {
   toMap() {
     if (this is TextSpan)
@@ -353,18 +341,6 @@ extension OffsetExt on Offset {
         'dx': this.dx,
         'dy': this.dy,
       };
-    return null;
-  }
-}
-
-extension TextBaselineExt on TextBaseline {
-  fromMap(dynamic jsonMap) {
-    if (jsonMap == null) return null;
-    return TextBaseline.values[jsonMap['index']];
-  }
-
-  toMap() {
-    if (this is TextBaseline) return {'index': this.index};
     return null;
   }
 }

@@ -56,3 +56,18 @@ you can see normal example by git clone and run this repo.
 
  ## Issues 
  feel free to open an issue for bugs or improvements.
+
+ # Supported Widgets
+
+ * [Container]()
+ * [Text]()
+ * [TextSpan]()
+ * [TextStyle]()
+ * [Row]()
+ * [Column]()
+ * [Stack]()
+ * [Centre]()
+ * [Wrap]()
+ * [Opacity]()
+ * [Align]()
+ * [Padding]()
