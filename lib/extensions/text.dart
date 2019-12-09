@@ -4,21 +4,23 @@ import 'common.dart';
 extension TextExt on Text {
   Map toMap() {
     return {
-      "data": this.data,
-      "maxLines": this.maxLines,
-      "textScaleFactor": this.textScaleFactor,
-      "softWrap": this.softWrap,
-      "semanticsLabel": this.semanticsLabel,
-      "locale": this.locale.toMap(),
-      "style": this.style.toMap(),
-      "textWidthBasis": this.textWidthBasis.toMap(),
-      "overflow": this.overflow.toMap(),
-      "strutStyle": this.strutStyle.toMap(),
-      "textAlign": this.textAlign.toMap(),
-      "textDirection": this.textDirection.toMap(),
+      'Text': {
+        "data": this.data,
+        "maxLines": this.maxLines,
+        "textScaleFactor": this.textScaleFactor,
+        "softWrap": this.softWrap,
+        "semanticsLabel": this.semanticsLabel,
+        "locale": this.locale.toMap(),
+        "style": this.style.toMap(),
+        "textWidthBasis": this.textWidthBasis.toMap(),
+        "overflow": this.overflow.toMap(),
+        "strutStyle": this.strutStyle.toMap(),
+        "textAlign": this.textAlign.toMap(),
+        "textDirection": this.textDirection.toMap(),
 
-      ///TODO: Implement Ext func
-      // "textSpan": this.textSpan
+        ///TODO: Implement Ext func
+        // "textSpan": this.textSpan
+      }
     };
   }
 
@@ -153,7 +155,7 @@ extension TextStyleExt on TextStyle {
           TextDecorationStyle.solid.fromMap(jsonMap['decorationStyle']),
       fontStyle: FontStyle.normal.fromMap(jsonMap['fontStyle']),
       fontWeight: FontWeight.normal.fromMap(jsonMap['fontWeight']),
-      shadows: [Shadow].fromMap(jsonMap['shadows']),
+      shadows: [].fromMap(jsonMap['shadows']),
       textBaseline: TextBaseline.alphabetic.fromMap(jsonMap['textBaseline']),
     );
   }
@@ -262,31 +264,6 @@ extension FontWeightExt on FontWeight {
   fromMap(dynamic jsonMap) {
     if (jsonMap == null) return null;
     return FontWeight.values[jsonMap['index']];
-  }
-}
-
-extension ListExt on List {
-  toMap() {
-    if (this is List) {
-      List<Map> mapsList = [];
-      this.forEach((f) {
-        if (f is Shadow) mapsList.add(f.toMap());
-        // if (f is InlineSpan) mapsList.add(f.toMap());
-      });
-      return mapsList;
-    }
-    return null;
-  }
-
-  fromMap(dynamic jsonMap) {
-    if (jsonMap == null) return null;
-    List<Shadow> shadows = [];
-    if (jsonMap is List) {
-      jsonMap.forEach((f) {
-        shadows.add(Shadow().fromMap(f));
-      });
-    }
-    return shadows;
   }
 }
 

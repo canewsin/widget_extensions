@@ -1,13 +1,15 @@
 import 'imports.dart';
 import 'common.dart';
 
-//!
 extension CenterExt on Center {
   toMap() {
     if (this is Center)
       return {
-        'heightFactor': this.heightFactor,
-        'widthFactor': this.widthFactor,
+        'Center': {
+          'heightFactor': this.heightFactor,
+          'widthFactor': this.widthFactor,
+          'child': Utils.toMap(this.child),
+        }
       };
     return null;
   }
@@ -17,6 +19,7 @@ extension CenterExt on Center {
     return Center(
       heightFactor: jsonMap['heightFactor'],
       widthFactor: jsonMap['widthFactor'],
+      child: Utils.fromMap(jsonMap['child']),
     );
   }
 }
@@ -25,9 +28,11 @@ extension OpacityExt on Opacity {
   toMap() {
     if (this is Opacity)
       return {
-        'alwaysIncludeSemantics': this.alwaysIncludeSemantics,
-        'opacity': this.opacity,
-        'child': this.child,
+        'Opacity': {
+          'alwaysIncludeSemantics': this.alwaysIncludeSemantics,
+          'opacity': this.opacity,
+          'child': Utils.toMap(this.child),
+        }
       };
     return null;
   }
@@ -37,7 +42,7 @@ extension OpacityExt on Opacity {
     return Opacity(
       alwaysIncludeSemantics: jsonMap['alwaysIncludeSemantics'],
       opacity: jsonMap['opacity'],
-      child: jsonMap['child'],
+      child: Utils.fromMap(jsonMap['child']),
     );
   }
 }
@@ -46,10 +51,12 @@ extension AlignExt on Align {
   toMap() {
     if (this is Align)
       return {
-        'alignment': this.alignment.toMap(),
-        'heightFactor': this.heightFactor,
-        'widthFactor': this.widthFactor,
-        'child': this.child,
+        'Align': {
+          'alignment': this.alignment.toMap(),
+          'heightFactor': this.heightFactor,
+          'widthFactor': this.widthFactor,
+          'child': Utils.toMap(this.child),
+        }
       };
     return null;
   }
@@ -60,7 +67,7 @@ extension AlignExt on Align {
       alignment: Alignment.center.fromMap(jsonMap['alignment']),
       heightFactor: jsonMap['heightFactor'],
       widthFactor: jsonMap['widthFactor'],
-      child: jsonMap['child'],
+      child: Utils.fromMap(jsonMap['child']),
     );
   }
 }
@@ -69,8 +76,10 @@ extension PaddingExt on Padding {
   toMap() {
     if (this is Padding)
       return {
-        'padding': this.padding,
-        'child': this.child,
+        'Padding': {
+          'padding': this.padding,
+          'child': Utils.toMap(this.child),
+        }
       };
     return null;
   }
@@ -79,24 +88,26 @@ extension PaddingExt on Padding {
     if (jsonMap == null) return null;
     return Padding(
       padding: jsonMap['padding'],
-      child: jsonMap['child'],
+      child: Utils.fromMap(jsonMap['child']),
     );
   }
 }
 
-//!
 extension WrapExt on Wrap {
   toMap() {
     if (this is Wrap)
       return {
-        'alignment': this.alignment.toMap(),
-        'crossAxisAlignment': this.crossAxisAlignment.toMap(),
-        'verticalDirection': this.verticalDirection.toMap(),
-        'direction': this.direction.toMap(),
-        'textDirection': this.textDirection.toMap(),
-        'runAlignment': this.runAlignment.toMap(),
-        'runSpacing': this.runSpacing,
-        'spacing': this.spacing,
+        'Wrap': {
+          'alignment': this.alignment.toMap(),
+          'crossAxisAlignment': this.crossAxisAlignment.toMap(),
+          'verticalDirection': this.verticalDirection.toMap(),
+          'direction': this.direction.toMap(),
+          'textDirection': this.textDirection.toMap(),
+          'runAlignment': this.runAlignment.toMap(),
+          'runSpacing': this.runSpacing,
+          'spacing': this.spacing,
+          'children': this.children.toMap(),
+        }
       };
     return null;
   }
@@ -114,19 +125,22 @@ extension WrapExt on Wrap {
       runAlignment: runAlignment.fromMap(jsonMap['runAlignment']),
       runSpacing: jsonMap['runSpacing'],
       spacing: jsonMap['spacing'],
+      children: [].wgtFromMap(jsonMap['children']),
     );
   }
 }
 
-//!
 extension StackExt on Stack {
   toMap() {
     if (this is Stack)
       return {
-        'alignment': this.alignment.toMap(),
-        'fit': this.fit.toMap(),
-        'overflow': this.overflow.toMap(),
-        'textDirection': this.textDirection.toMap(),
+        'Stack': {
+          'alignment': this.alignment.toMap(),
+          'fit': this.fit.toMap(),
+          'overflow': this.overflow.toMap(),
+          'textDirection': this.textDirection.toMap(),
+          'children': this.children.toMap(),
+        }
       };
     return null;
   }
@@ -138,66 +152,25 @@ extension StackExt on Stack {
       fit: StackFit.loose.fromMap(jsonMap['fit']),
       overflow: Overflow.clip.fromMap(jsonMap['overflow']),
       textDirection: TextDirection.ltr.fromMap(jsonMap['textDirection']),
+      children: [].wgtFromMap(jsonMap['children']),
     );
   }
 }
 
-extension StackFitExt on StackFit {
-  String toJson() {
-    return json.encode(this.toMap());
-  }
-
-  Map toMap() {
-    return {
-      'index': this.index,
-    };
-  }
-
-  StackFit fromJson(String jsonStr) {
-    var jsonMap = json.decode(jsonStr);
-    return StackFit.values[jsonMap['index']];
-  }
-
-  StackFit fromMap(dynamic jsonMap) {
-    if (jsonMap == null) return null;
-    return StackFit.values[jsonMap['index']];
-  }
-}
-
-extension OverflowExt on Overflow {
-  String toJson() {
-    return json.encode(this.toMap());
-  }
-
-  Map toMap() {
-    return {
-      'index': this.index,
-    };
-  }
-
-  Overflow fromJson(String jsonStr) {
-    var jsonMap = json.decode(jsonStr);
-    return Overflow.values[jsonMap['index']];
-  }
-
-  Overflow fromMap(dynamic jsonMap) {
-    if (jsonMap == null) return null;
-    return Overflow.values[jsonMap['index']];
-  }
-}
-
-//!
 extension RowExt on Row {
   toMap() {
     if (this is Row)
       return {
-        'crossAxisAlignment': this.crossAxisAlignment.toMap(),
-        'direction': this.direction.toMap(),
-        'mainAxisAlignment': this.mainAxisAlignment.toMap(),
-        'mainAxisSize': this.mainAxisSize.toMap(),
-        'verticalDirection': this.verticalDirection.toMap(),
-        'textBaseline': this.textBaseline.toMap(),
-        'textDirection': this.textDirection.toMap(),
+        'Row': {
+          'crossAxisAlignment': this.crossAxisAlignment.toMap(),
+          'direction': this.direction.toMap(),
+          'mainAxisAlignment': this.mainAxisAlignment.toMap(),
+          'mainAxisSize': this.mainAxisSize.toMap(),
+          'verticalDirection': this.verticalDirection.toMap(),
+          'textBaseline': this.textBaseline.toMap(),
+          'textDirection': this.textDirection.toMap(),
+          'children': this.children.toMap(),
+        }
       };
     return null;
   }
@@ -214,22 +187,25 @@ extension RowExt on Row {
           VerticalDirection.down.fromMap(jsonMap['verticalDirection']),
       textBaseline: TextBaseline.alphabetic.fromMap(jsonMap['textBaseline']),
       textDirection: TextDirection.ltr.fromMap(jsonMap['textDirection']),
+      children: [].wgtFromMap(jsonMap['children']),
     );
   }
 }
 
-//!
 extension ColumnExt on Column {
   toMap() {
     if (this is Column)
       return {
-        'crossAxisAlignment': this.crossAxisAlignment.toMap(),
-        'direction': this.direction.toMap(),
-        'mainAxisAlignment': this.mainAxisAlignment.toMap(),
-        'mainAxisSize': this.mainAxisSize.toMap(),
-        'verticalDirection': this.verticalDirection.toMap(),
-        'textBaseline': this.textBaseline.toMap(),
-        'textDirection': this.textDirection.toMap(),
+        'Column': {
+          'crossAxisAlignment': this.crossAxisAlignment.toMap(),
+          'direction': this.direction.toMap(),
+          'mainAxisAlignment': this.mainAxisAlignment.toMap(),
+          'mainAxisSize': this.mainAxisSize.toMap(),
+          'verticalDirection': this.verticalDirection.toMap(),
+          'textBaseline': this.textBaseline.toMap(),
+          'textDirection': this.textDirection.toMap(),
+          'children': this.children.toMap(),
+        }
       };
     return null;
   }
@@ -246,160 +222,122 @@ extension ColumnExt on Column {
           VerticalDirection.down.fromMap(jsonMap['verticalDirection']),
       textBaseline: TextBaseline.alphabetic.fromMap(jsonMap['textBaseline']),
       textDirection: TextDirection.ltr.fromMap(jsonMap['textDirection']),
+      children: [].wgtFromMap(jsonMap['children']),
     );
   }
 }
 
-extension AxisExt on Axis {
-  String toJson() {
-    return json.encode(this.toMap());
+extension PlaceholderExt on Placeholder {
+  toMap() {
+    if (this is Placeholder)
+      return {
+        'Placeholder': {
+          'fallbackHeight': this.fallbackHeight,
+          'fallbackWidth': this.fallbackWidth,
+          'strokeWidth': this.strokeWidth,
+          'color': this.color.toMap(),
+        }
+      };
+    return null;
   }
 
-  Map toMap() {
-    return {
-      'index': this.index,
-    };
-  }
-
-  Axis fromJson(String jsonStr) {
-    var jsonMap = json.decode(jsonStr);
-    return Axis.values[jsonMap['index']];
-  }
-
-  Axis fromMap(dynamic jsonMap) {
+  fromMap(jsonMap) {
     if (jsonMap == null) return null;
-    return Axis.values[jsonMap['index']];
+    return Placeholder(
+      fallbackHeight: jsonMap['fallbackHeight'],
+      fallbackWidth: jsonMap['fallbackWidth'],
+      strokeWidth: jsonMap['strokeWidth'],
+      color: Color(0).fromMap(jsonMap['color']),
+    );
   }
 }
 
-extension MainAxisAlignmentExt on MainAxisAlignment {
-  String toJson() {
-    return json.encode(this.toMap());
+extension ExpandedExt on Expanded {
+  toMap() {
+    if (this is Expanded)
+      return {
+        'Expanded': {
+          'flex': this.flex,
+          'child': Utils.toMap(this.child),
+        }
+      };
+    return null;
   }
 
-  Map toMap() {
-    return {
-      'index': this.index,
-    };
-  }
-
-  MainAxisAlignment fromJson(String jsonStr) {
-    var jsonMap = json.decode(jsonStr);
-    return MainAxisAlignment.values[jsonMap['index']];
-  }
-
-  MainAxisAlignment fromMap(dynamic jsonMap) {
+  fromMap(jsonMap) {
     if (jsonMap == null) return null;
-    return MainAxisAlignment.values[jsonMap['index']];
+    return Expanded(
+      flex: jsonMap['flex'],
+      child: Utils.fromMap(jsonMap['child']),
+    );
   }
 }
 
-extension MainAxisSizeExt on MainAxisSize {
-  String toJson() {
-    return json.encode(this.toMap());
+extension AspectRatioExt on AspectRatio {
+  toMap() {
+    if (this is AspectRatio)
+      return {
+        'AspectRatio': {
+          'aspectRatio': this.aspectRatio,
+          'child': Utils.toMap(this.child),
+        }
+      };
+    return null;
   }
 
-  Map toMap() {
-    return {
-      'index': this.index,
-    };
-  }
-
-  MainAxisSize fromJson(String jsonStr) {
-    var jsonMap = json.decode(jsonStr);
-    return MainAxisSize.values[jsonMap['index']];
-  }
-
-  MainAxisSize fromMap(dynamic jsonMap) {
+  fromMap(jsonMap) {
     if (jsonMap == null) return null;
-    return MainAxisSize.values[jsonMap['index']];
+    return AspectRatio(
+      aspectRatio: jsonMap['aspectRatio'],
+      child: Utils.fromMap(jsonMap['child']),
+    );
   }
 }
 
-extension CrossAxisAlignmentExt on CrossAxisAlignment {
-  String toJson() {
-    return json.encode(this.toMap());
+extension SizedBoxExt on SizedBox {
+  toMap() {
+    if (this is SizedBox)
+      return {
+        'SizedBox': {
+          'height': this.height,
+          'width': this.width,
+          'child': Utils.toMap(this.child),
+        }
+      };
+    return null;
   }
 
-  Map toMap() {
-    return {
-      'index': this.index,
-    };
-  }
-
-  CrossAxisAlignment fromJson(String jsonStr) {
-    var jsonMap = json.decode(jsonStr);
-    return CrossAxisAlignment.values[jsonMap['index']];
-  }
-
-  CrossAxisAlignment fromMap(dynamic jsonMap) {
+  fromMap(jsonMap) {
     if (jsonMap == null) return null;
-    return CrossAxisAlignment.values[jsonMap['index']];
+    return SizedBox(
+      height: jsonMap['height'],
+      width: jsonMap['width'],
+      child: Utils.fromMap(jsonMap['child']),
+    );
   }
 }
 
-extension WrapCrossAlignmentExt on WrapCrossAlignment {
-  String toJson() {
-    return json.encode(this.toMap());
+extension ClipRRectExt on ClipRRect {
+  toMap() {
+    if (this is ClipRRect)
+      return {
+        'ClipRRect': {
+          'borderRadius': this.borderRadius.toMap(),
+          'clipBehavior': this.clipBehavior.toMap(),
+          // 'clipper': (this.clipper as RRectCustomClipper).toMap(),
+          'child': Utils.toMap(this.child),
+        }
+      };
+    return null;
   }
 
-  Map toMap() {
-    return {
-      'index': this.index,
-    };
-  }
-
-  WrapCrossAlignment fromJson(String jsonStr) {
-    var jsonMap = json.decode(jsonStr);
-    return WrapCrossAlignment.values[jsonMap['index']];
-  }
-
-  WrapCrossAlignment fromMap(dynamic jsonMap) {
+  fromMap(jsonMap) {
     if (jsonMap == null) return null;
-    return WrapCrossAlignment.values[jsonMap['index']];
-  }
-}
-
-extension WrapAlignmentExt on WrapAlignment {
-  String toJson() {
-    return json.encode(this.toMap());
-  }
-
-  Map toMap() {
-    return {
-      'index': this.index,
-    };
-  }
-
-  WrapAlignment fromJson(String jsonStr) {
-    var jsonMap = json.decode(jsonStr);
-    return WrapAlignment.values[jsonMap['index']];
-  }
-
-  WrapAlignment fromMap(dynamic jsonMap) {
-    if (jsonMap == null) return null;
-    return WrapAlignment.values[jsonMap['index']];
-  }
-}
-
-extension VerticalDirectionExt on VerticalDirection {
-  String toJson() {
-    return json.encode(this.toMap());
-  }
-
-  Map toMap() {
-    return {
-      'index': this.index,
-    };
-  }
-
-  VerticalDirection fromJson(String jsonStr) {
-    var jsonMap = json.decode(jsonStr);
-    return VerticalDirection.values[jsonMap['index']];
-  }
-
-  VerticalDirection fromMap(dynamic jsonMap) {
-    if (jsonMap == null) return null;
-    return VerticalDirection.values[jsonMap['index']];
+    return ClipRRect(
+      borderRadius: BorderRadius.zero.fromMap(jsonMap['borderRadius']),
+      clipBehavior: Clip.none.fromMap(jsonMap['clipBehavior']),
+      clipper: RRectCustomClipper(jsonMap['clipper']),
+      child: Utils.fromMap(jsonMap['child']),
+    );
   }
 }
