@@ -1,3 +1,9 @@
+## [0.0.4] : 12-12-2019
+
+* Updated sdk Constraints
+* Now You can Use library with latest flutter stable i.e v1.12.13
+* Removed imports.dart helper that misbihaves while generating docs.
+
 ## [0.0.3] : 08-12-2019
 
 * Added RaisedButton Extension Method

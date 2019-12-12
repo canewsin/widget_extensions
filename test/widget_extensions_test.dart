@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:widget_extensions/extensions/imports.dart';
+import 'package:widget_extensions/extensions/common.dart';
+import 'package:widget_extensions/extensions/utils.dart';
 import 'package:widget_extensions/widget_extensions.dart';
 
 void main() {

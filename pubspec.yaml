@@ -1,14 +1,13 @@
 name: widget_extensions
 description: An Extension library for Flutter Widgets. This Package Will Helps to Extend Widgets with Various Extention Functions.
-version: 0.0.3
-authors: [Pramukesh <n.bhargavvenky@gmail.com>, CANewsIn(Organisation) <canews.in@gmail.com>]
+version: 0.0.4
+# authors: [Pramukesh <n.bhargavvenky@gmail.com>, CANewsIn(Organisation) <canews.in@gmail.com>]
 homepage: https://github.com/canewsin/widget_extensions
 repository: https://github.com/canewsin/widget_extensions
 issue_tracker: https://github.com/canewsin/widget_extensions/issues
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
-  flutter: ^1.12.15-pre.6
 
 dependencies:
   flutter:

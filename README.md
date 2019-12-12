@@ -4,12 +4,12 @@ An Extension library for Flutter Widgets.
 
 ## Getting Started
 
-This Lib helps by providing utility functions for Flutter Widgets. These Methods are written using extension methods provided by `dart sdk 2.6.0` so as of now it requires `flutter master` branch to work. this is same case for the library only `Container` and `Text` Widgets and `Sub Widgets` (Most of them) for those Widgets are implemented. This is mainly useful for dynamic widgets which will be implemented in code push project for flutter, as well as useful for updatable widgets for your custom implementations.
+This Lib helps by providing utility functions for Flutter Widgets. These Methods are written using extension methods provided by `dart sdk 2.6.0`. See the below Supported Widget Section for the implemented Widgets. This is mainly useful for dynamic widgets which will be implemented in code push project for flutter, as well as useful for updatable widgets for your custom implementations.
 
 ## Install
 
 ```
-widget_extensions: ^0.0.1
+widget_extensions: ^0.0.4
 ```
 
 ## Example
