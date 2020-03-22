@@ -88,7 +88,7 @@ class Utils {
   static Widget fromMap(jsonMap) {
     switch (jsonMap) {
       case 'Container':
-        return Container().fromMap(jsonMap['Container']);
+        return Container().fromMap(jsonMap['Container'] as Map);
         break;
       case 'Text':
         return Text('').fromMap(jsonMap['Text']);
